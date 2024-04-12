@@ -1,0 +1,12 @@
+img {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+.box-result {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(75px, 75px));
+}
