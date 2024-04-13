@@ -1,1 +1,1 @@
-export type TSteps = 'select-participants' | 'to-play';
+export type TSteps = 'select-participants' | 'to-play' | 'draw';
