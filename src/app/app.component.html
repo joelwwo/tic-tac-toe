@@ -1,16 +1,16 @@
-<div>
+<!-- <div>
   <pre>{{ search.value }}  </pre>
-</div>
+</div> -->
 
 <div>
-  <input controllName="search" type="text" name="" id="" />
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
   <div>
     <small>{{ messageErro }}</small>
   </div>
 </div>
 
 <div class="box-result">
-  <div *ngFor="let item of resultFromSearch">
+  <div *ngFor="let item of resultFromSearch$ | async">
     <div>
       <img
         src="{{ item.thumbnail.path }}.{{ item.thumbnail.extension }}"
