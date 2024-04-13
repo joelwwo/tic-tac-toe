@@ -30,7 +30,6 @@ export class MarvelService {
       this.query
     }&nameStartsWith=${encodeURIComponent(name)}`;
 
-    // return a prop result from search
     return this.http
       .get(queryUrl)
       .pipe(map((response: any) => response.data.results));
