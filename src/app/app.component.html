@@ -1,4 +1,4 @@
-<div *ngIf="resultFromSearch">
+<div>
   <pre>{{ search.value }}  </pre>
 </div>
 
@@ -6,8 +6,8 @@
   <input controllName="search" type="text" name="" id="" />
 </div>
 
-<div *ngIf="resultFromSearch" class="box-result">
-  <div *ngFor="let item of resultFromSearch.results">
+<div class="box-result">
+  <div *ngFor="let item of resultFromSearch">
     <div>
       <img
         src="{{ item.thumbnail.path }}.{{ item.thumbnail.extension }}"

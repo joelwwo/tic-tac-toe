@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MarvelService } from './services/marvel.service';
 import { FormControl } from '@angular/forms';
+import { ICharacters } from './interfaces/ICharacters';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +10,14 @@ import { FormControl } from '@angular/forms';
 })
 export class AppComponent implements OnInit {
   title = 'tic-tac-toe';
-  resultFromSearch: any;
+  resultFromSearch: ICharacters[] = [];
   search = new FormControl('');
 
   constructor(private marvelService: MarvelService) {}
 
   ngOnInit() {
-    this.marvelService.getCharacters('w').subscribe((res: any) => {
-      this.resultFromSearch = res.data;
-    });
+    this.marvelService
+      .getCharactersByName('w')
+      .subscribe((res) => (this.resultFromSearch = res));
   }
 }
