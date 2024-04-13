@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MarvelService } from './services/marvel.service';
 import { ICharacters } from './interfaces/ICharacters';
-import {
-  Observable,
-  Subject,
-  debounceTime,
-  distinctUntilChanged,
-  switchMap,
-} from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -15,35 +10,23 @@ import {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'tic-tac-toe';
-  resultFromSearch$!: Observable<ICharacters[]>;
-
-  private searchTerms = new Subject<string>();
-
+  filter = new FormControl<string>('');
   messageErro = '';
+  results: ICharacters[] = [];
 
   constructor(private marvelService: MarvelService) {}
 
   ngOnInit() {
-    this.resultFromSearch$ = this.searchTerms.pipe(
-      debounceTime(300),
-
-      distinctUntilChanged(),
-
-      switchMap((term: string) => {
-        const result = this.marvelService.getCharactersByName(term);
-        result.subscribe((res) => {
+    this.filter.valueChanges
+      .pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe((value: any) => {
+        this.marvelService.getCharactersByName(value).subscribe((res) => {
           this.messageErro = '';
-          if (!res.length)
+          if (!res.length && value)
             this.messageErro = 'Não foi encontrado nenhum personagem!';
+
+          this.results = res;
         });
-
-        return result;
-      })
-    );
-  }
-
-  search(term: string): void {
-    this.searchTerms.next(term);
+      });
   }
 }

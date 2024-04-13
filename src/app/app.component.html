@@ -1,34 +1,22 @@
-<!-- <div>
-  <pre>{{ search.value }}  </pre>
-</div> -->
-
 <div>
-  <input
-    #searchBox
-    id="search-box"
-    (input)="search(searchBox.value)"
-    type="search"
-  />
+  <input [formControl]="filter" type="search" />
+  <div>{{ filter.value }}</div>
+
   <div>
     <small>{{ messageErro }}</small>
   </div>
 </div>
 
 <div class="box-result">
-  <ng-container *ngIf="resultFromSearch$ | async as results; else loading">
-    <div *ngFor="let item of results">
+  <div *ngFor="let item of results">
+    <div>
+      <img
+        src="{{ item.thumbnail.path }}.{{ item.thumbnail.extension }}"
+        alt=""
+      />
       <div>
-        <img
-          src="{{ item.thumbnail.path }}.{{ item.thumbnail.extension }}"
-          alt=""
-        />
-        <div>
-          <small>{{ item.name }}</small>
-        </div>
+        <small>{{ item.name }}</small>
       </div>
     </div>
-  </ng-container>
-  <ng-template #loading>
-    <h1>Loading...</h1>
-  </ng-template>
+  </div>
 </div>
