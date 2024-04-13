@@ -3,7 +3,12 @@
 </div> -->
 
 <div>
-  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+  <input
+    #searchBox
+    id="search-box"
+    (input)="search(searchBox.value)"
+    type="search"
+  />
   <div>
     <small>{{ messageErro }}</small>
   </div>
@@ -16,6 +21,9 @@
         src="{{ item.thumbnail.path }}.{{ item.thumbnail.extension }}"
         alt=""
       />
+      <div>
+        <small>{{ item.name }}</small>
+      </div>
     </div>
   </div>
 </div>
