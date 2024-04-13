@@ -32,11 +32,11 @@ export class AppComponent implements OnInit {
 
       switchMap((term: string) => {
         const result = this.marvelService.getCharactersByName(term);
-        // result.subscribe((res) => {
-        //   // this.messageErro = '';
-        //   // if (!res.length)
-        //   //   this.messageErro = 'Não foi encontrado nenhum personagem!';
-        // });
+        result.subscribe((res) => {
+          this.messageErro = '';
+          if (!res.length)
+            this.messageErro = 'Não foi encontrado nenhum personagem!';
+        });
 
         return result;
       })

@@ -15,15 +15,20 @@
 </div>
 
 <div class="box-result">
-  <div *ngFor="let item of resultFromSearch$ | async">
-    <div>
-      <img
-        src="{{ item.thumbnail.path }}.{{ item.thumbnail.extension }}"
-        alt=""
-      />
+  <ng-container *ngIf="resultFromSearch$ | async as results; else loading">
+    <div *ngFor="let item of results">
       <div>
-        <small>{{ item.name }}</small>
+        <img
+          src="{{ item.thumbnail.path }}.{{ item.thumbnail.extension }}"
+          alt=""
+        />
+        <div>
+          <small>{{ item.name }}</small>
+        </div>
       </div>
     </div>
-  </div>
+  </ng-container>
+  <ng-template #loading>
+    <h1>Loading...</h1>
+  </ng-template>
 </div>
