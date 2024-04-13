@@ -1,0 +1,17 @@
+<div>
+  <app-filter [filter]="filter" [messageErro]="messageErro"></app-filter>
+</div>
+
+<div class="box-result">
+  <div *ngFor="let item of results">
+    <div>
+      <img
+        src="{{ item.thumbnail.path }}.{{ item.thumbnail.extension }}"
+        alt=""
+      />
+      <div>
+        <small>{{ item.name }}</small>
+      </div>
+    </div>
+  </div>
+</div>
