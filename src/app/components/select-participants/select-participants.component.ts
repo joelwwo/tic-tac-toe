@@ -12,21 +12,23 @@ import { MarvelService } from 'src/app/services/marvel.service';
 export class SelectParticipantsComponent implements OnInit {
   filter = new FormControl<string>('');
   messageErro = '';
-  results: ICharacters[] = [];
+  characters: ICharacters[] = [];
 
   constructor(private marvelService: MarvelService) {}
 
   ngOnInit() {
     this.filter.valueChanges
       .pipe(debounceTime(300), distinctUntilChanged())
-      .subscribe((value: any) => {
-        this.marvelService.getCharactersByName(value).subscribe((res) => {
-          this.messageErro = '';
-          if (!res.length && value)
-            this.messageErro = 'Não foi encontrado nenhum personagem!';
+      .subscribe((informedFilter: any) => {
+        this.marvelService
+          .getCharactersByName(informedFilter)
+          .subscribe((response) => {
+            this.messageErro = '';
+            if (!response.length && informedFilter)
+              this.messageErro = 'Não foi encontrado nenhum personagem!';
 
-          this.results = res;
-        });
+            this.characters = response;
+          });
       });
   }
 }
