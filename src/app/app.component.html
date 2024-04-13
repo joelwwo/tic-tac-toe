@@ -1,13 +1,15 @@
-<div *ngIf="userOne">
-  {{ userOne.name }}
-</div>
+<ng-container *ngIf="step === 'select-participants'; else toPlay">
+  <div *ngIf="userOne">
+    {{ userOne.name }}
+  </div>
 
-<div *ngIf="userTwo">
-  {{ userTwo.name }}
-</div>
+  <div *ngIf="userTwo">
+    {{ userTwo.name }}
+  </div>
+</ng-container>
 
-<ng-container *ngIf="!userOne || !userTwo">
+<ng-template #toPlay>
   <app-select-participants
     (selectedCharacter)="selectOpenent($event)"
   ></app-select-participants>
-</ng-container>
+</ng-template>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ICharacter } from './interfaces/ICharacter';
+import { TSteps } from './types/TSteps';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,7 @@ import { ICharacter } from './interfaces/ICharacter';
 export class AppComponent implements OnInit {
   userOne!: ICharacter;
   userTwo: ICharacter;
+  step: TSteps = 'select-participants';
 
   constructor() {}
 
@@ -19,6 +21,7 @@ export class AppComponent implements OnInit {
       this.userOne = user;
     } else {
       this.userTwo = user;
+      this.step = 'to-play';
     }
   }
 }
