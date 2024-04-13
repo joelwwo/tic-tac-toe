@@ -4,7 +4,10 @@
 
 <div class="box-result">
   <div *ngFor="let character of characters">
-    <div>
+    <div
+      (click)="selectCharacter(character)"
+      [ngClass]="{ 'character-selected': character.id === resultSelected?.id }"
+    >
       <img
         src="{{ character.thumbnail.path }}.{{ character.thumbnail.extension }}"
         alt=""
@@ -13,5 +16,9 @@
         <small>{{ character.name }}</small>
       </div>
     </div>
+  </div>
+
+  <div *ngIf="resultSelected">
+    <button (click)="chooseCharacter()">Escolher</button>
   </div>
 </div>

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import crypto from 'crypto-js';
 import { environment } from 'src/environments/environment';
-import { ICharacters } from '../interfaces/ICharacters';
+import { ICharacter } from '../interfaces/ICharacter';
 import { Observable, catchError, map, of } from 'rxjs';
 
 @Injectable({
@@ -32,7 +32,7 @@ export class MarvelService {
     };
   }
 
-  getCharactersByName(name: string): Observable<ICharacters[]> {
+  getCharactersByName(name: string): Observable<ICharacter[]> {
     if (!name.trim()) return of([]);
 
     const queryUrl = `${this.baseUrl}characters${
@@ -41,7 +41,7 @@ export class MarvelService {
 
     return this.http.get(queryUrl).pipe(
       map((response: any) => response.data.results),
-      catchError(this.handleError<ICharacters[]>('searchHeroes', []))
+      catchError(this.handleError<ICharacter[]>('searchHeroes', []))
     );
   }
 }

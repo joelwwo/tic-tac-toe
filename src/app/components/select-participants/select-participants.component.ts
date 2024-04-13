@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
-import { ICharacters } from 'src/app/interfaces/ICharacters';
+import { ICharacter } from 'src/app/interfaces/ICharacter';
 import { MarvelService } from 'src/app/services/marvel.service';
 
 @Component({
@@ -12,7 +12,9 @@ import { MarvelService } from 'src/app/services/marvel.service';
 export class SelectParticipantsComponent implements OnInit {
   filter = new FormControl<string>('');
   messageErro = '';
-  characters: ICharacters[] = [];
+  characters: ICharacter[] = [];
+  resultSelected?: ICharacter;
+  @Output() selectedCharacter = new EventEmitter<ICharacter>();
 
   constructor(private marvelService: MarvelService) {}
 
@@ -20,6 +22,7 @@ export class SelectParticipantsComponent implements OnInit {
     this.filter.valueChanges
       .pipe(debounceTime(300), distinctUntilChanged())
       .subscribe((informedFilter: any) => {
+        this.resultSelected = undefined;
         this.marvelService
           .getCharactersByName(informedFilter)
           .subscribe((response) => {
@@ -30,5 +33,13 @@ export class SelectParticipantsComponent implements OnInit {
             this.characters = response;
           });
       });
+  }
+
+  chooseCharacter() {
+    this.selectedCharacter.emit(this.resultSelected);
+  }
+
+  selectCharacter(character: ICharacter) {
+    this.resultSelected = character;
   }
 }

@@ -3,7 +3,7 @@ interface IThumbnail {
   extension: string;
 }
 
-export interface ICharacters {
+export interface ICharacter {
   id: number;
   description: string;
   modified: string;

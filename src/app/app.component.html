@@ -1,1 +1,13 @@
-<app-select-participants></app-select-participants>
+<div *ngIf="userOne">
+  {{ userOne.name }}
+</div>
+
+<div *ngIf="userTwo">
+  {{ userTwo.name }}
+</div>
+
+<ng-container *ngIf="!userOne || !userTwo">
+  <app-select-participants
+    (selectedCharacter)="selectOpenent($event)"
+  ></app-select-participants>
+</ng-container>
