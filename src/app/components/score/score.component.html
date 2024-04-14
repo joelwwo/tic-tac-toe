@@ -1,7 +1,13 @@
 <div>
+  <div>{{ userOne?.canPlay ? "🟢" : "" }}</div>
+  <div>
+    <pre>{{ userOne | json }}</pre>
+  </div>
   {{ userOne?.name }}
 </div>
 
 <div>
+  <pre>{{ userTwo | json }}</pre>
+  <div>{{ userTwo?.canPlay ? "🟢" : "" }}</div>
   {{ userTwo?.name }}
 </div>

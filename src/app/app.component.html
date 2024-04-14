@@ -1,8 +1,15 @@
 <app-score [userOne]="userOne" [userTwo]="userTwo"></app-score>
 
 <app-select-participants
-  (selectedCharacter)="selectOpenent($event)"
+  (selectedCharacter)="selectOpponent($event)"
   [step]="step"
 ></app-select-participants>
 
-<h1>Hora do Jogo</h1>
+<app-draw
+  *ngIf="userOne && userTwo"
+  [step]="step"
+  [characters]="[userOne, userTwo]"
+  (drawnCharacter)="defineCharacterThatStartsTheGame($event)"
+></app-draw>
+
+<app-game [step]="step"></app-game>

@@ -8,6 +8,7 @@ export interface ICharacter {
   description: string;
   modified: string;
   name: string;
+  canPlay: boolean;
   resourceURI: string;
   thumbnail: IThumbnail;
 }

@@ -8,20 +8,34 @@ import { TSteps } from './types/TSteps';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  userOne?: ICharacter;
-  userTwo?: ICharacter;
+  userOne!: ICharacter;
+  userTwo!: ICharacter;
   step: TSteps = 'select-participants';
 
   constructor() {}
 
   ngOnInit() {}
 
-  selectOpenent(user: ICharacter) {
-    if (!this.userOne) {
-      this.userOne = user;
-    } else {
-      this.userTwo = user;
-      this.step = 'to-play';
-    }
+  setStep(step: TSteps) {
+    this.step = step;
+  }
+
+  selectOpponent(character: ICharacter) {
+    const hasUserOne = this.userOne?.id;
+    if (hasUserOne) {
+      this.userTwo = character;
+      this.userOne.canPlay = this.userTwo.canPlay = false;
+      this.setStep('draw');
+    } else this.userOne = character;
+  }
+
+  defineCharacterThatStartsTheGame(character: ICharacter) {
+    this.defineCharacterWhoPlaysInTurn(character);
+    this.setStep('to-play');
+  }
+
+  defineCharacterWhoPlaysInTurn(character: ICharacter) {
+    this.userOne.canPlay = this.userTwo.canPlay = false;
+    character.canPlay = true;
   }
 }
