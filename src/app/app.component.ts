@@ -21,10 +21,9 @@ export class AppComponent implements OnInit {
   }
 
   selectOpponent(character: ICharacter) {
-    const hasUserOne = this.userOne?.id;
-    if (hasUserOne) {
+    if (this.userOne?.id) {
       this.userTwo = character;
-      this.userOne.canPlay = this.userTwo.canPlay = false;
+      this.resetPlayers();
       this.setStep('draw');
     } else this.userOne = character;
   }
@@ -35,7 +34,18 @@ export class AppComponent implements OnInit {
   }
 
   defineCharacterWhoPlaysInTurn(character: ICharacter) {
+    if (!this.userOne?.id || !this.userTwo?.id) return;
     this.userOne.canPlay = this.userTwo.canPlay = false;
     character.canPlay = true;
+  }
+
+  resetPlayers() {
+    this.userOne.points = this.userTwo.points = 0;
+    this.userOne.canPlay = this.userTwo.canPlay = false;
+  }
+
+  resetGame() {
+    this.setStep('select-participants');
+    this.resetPlayers();
   }
 }

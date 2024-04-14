@@ -9,6 +9,7 @@ export interface ICharacter {
   modified: string;
   name: string;
   canPlay: boolean;
+  points: number;
   resourceURI: string;
   thumbnail: IThumbnail;
 }
