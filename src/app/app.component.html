@@ -1,33 +1,8 @@
-<div *ngIf="userOne">
-  {{ userOne.name }}
-</div>
+<app-score [userOne]="userOne" [userTwo]="userTwo"></app-score>
 
-<div *ngIf="userTwo">
-  {{ userTwo.name }}
-</div>
+<app-select-participants
+  (selectedCharacter)="selectOpenent($event)"
+  [step]="step"
+></app-select-participants>
 
-<!-- switch case of step -->
-
-<ng-container [ngSwitch]="step">
-  <ng-container *ngSwitchCase="'to-play'">
-    <h1>Hora do Jogo</h1>
-  </ng-container>
-  <ng-container *ngSwitchCase="'select-participants'">
-    <app-select-participants
-      (selectedCharacter)="selectOpenent($event)"
-    ></app-select-participants>
-  </ng-container>
-  <ng-container *ngSwitchDefault>
-    <h1>Selecione os participantes</h1>
-  </ng-container>
-</ng-container>
-
-<ng-container *ngIf="step === 'select-participants'; else toPlay">
-  <app-select-participants
-    (selectedCharacter)="selectOpenent($event)"
-  ></app-select-participants>
-</ng-container>
-
-<ng-template #toPlay>
-  <h1>Hora do Jogo</h1>
-</ng-template>
+<h1>Hora do Jogo</h1>

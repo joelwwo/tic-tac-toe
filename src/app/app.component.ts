@@ -8,8 +8,8 @@ import { TSteps } from './types/TSteps';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  userOne!: ICharacter;
-  userTwo: ICharacter;
+  userOne?: ICharacter;
+  userTwo?: ICharacter;
   step: TSteps = 'select-participants';
 
   constructor() {}
