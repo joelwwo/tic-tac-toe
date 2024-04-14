@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TSteps } from 'src/app/types/TSteps';
 
 @Component({
@@ -8,6 +8,7 @@ import { TSteps } from 'src/app/types/TSteps';
 })
 export class GameComponent implements OnInit {
   @Input() step!: TSteps;
+  @Output() onResetGame = new EventEmitter<boolean>();
 
   constructor() {}
 

@@ -8,8 +8,8 @@ import { TSteps } from './types/TSteps';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  userOne!: ICharacter;
-  userTwo!: ICharacter;
+  userOne?: ICharacter;
+  userTwo?: ICharacter;
   step: TSteps = 'select-participants';
 
   constructor() {}
@@ -39,13 +39,17 @@ export class AppComponent implements OnInit {
     character.canPlay = true;
   }
 
-  resetPlayers() {
-    this.userOne.points = this.userTwo.points = 0;
-    this.userOne.canPlay = this.userTwo.canPlay = false;
+  resetPlayers(resetAll = false) {
+    if (!this.userOne?.id || !this.userTwo?.id) return;
+    if (resetAll) this.userOne = this.userTwo = undefined;
+    else {
+      this.userOne.points = this.userTwo.points = 0;
+      this.userOne.canPlay = this.userTwo.canPlay = false;
+    }
   }
 
   resetGame() {
     this.setStep('select-participants');
-    this.resetPlayers();
+    this.resetPlayers(true);
   }
 }

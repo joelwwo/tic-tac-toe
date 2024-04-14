@@ -12,4 +12,4 @@
   (drawnCharacter)="defineCharacterThatStartsTheGame($event)"
 ></app-draw>
 
-<app-game [step]="step"></app-game>
+<app-game [step]="step" (onResetGame)="resetGame()"></app-game>
