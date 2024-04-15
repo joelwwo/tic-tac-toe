@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
 
   defineCharacterThatStartsTheGame(character: ICharacter) {
     character.identifier = 'x';
+    this.currentPlayer = character;
     this.defineCharacterWhoPlaysInTurn(character);
     this.setStep('to-play');
   }
@@ -43,7 +44,6 @@ export class AppComponent implements OnInit {
     if (!this.userOne?.id || !this.userTwo?.id) return;
     this.userOne.canPlay = this.userTwo.canPlay = false;
     character.canPlay = true;
-    this.currentPlayer = character;
   }
 
   resetPlayers(resetAll = false) {

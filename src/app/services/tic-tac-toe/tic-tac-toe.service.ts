@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import { ICharacter } from 'src/app/interfaces/ICharacter';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TicTacToeService {
-  currentPlayer!: ICharacter;
+  @Input() currentPlayer!: ICharacter;
   gameState: any = [null, null, null, null, null, null, null, null, null];
   gameActive = true;
 
@@ -25,6 +25,8 @@ export class TicTacToeService {
   checkWinner() {}
 
   handleClick(index: number): void {
+    console.log('index: ', index);
+    console.log('currentPlayer: ', this.currentPlayer);
     this.gameState[index] = this.currentPlayer;
   }
 }
