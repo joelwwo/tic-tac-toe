@@ -32,16 +32,25 @@ export class SelectParticipantsComponent implements OnInit {
             if (!response.length && informedFilter)
               this.messageErro = 'Não foi encontrado nenhum personagem!';
 
-            this.characters = response;
+            this.filterDuplicatedResults(response);
           });
       });
   }
 
   chooseCharacter() {
     this.selectedCharacter.emit(this.resultSelected);
+    this.filterDuplicatedResults(this.characters);
   }
 
   selectCharacter(character: ICharacter) {
     this.resultSelected = character;
+  }
+
+  filterDuplicatedResults(resultsApi: ICharacter[]) {
+    if (this.resultSelected?.id !== undefined)
+      this.characters = resultsApi.filter(
+        (character) => character.id !== this.resultSelected?.id
+      );
+    else this.characters = resultsApi;
   }
 }
