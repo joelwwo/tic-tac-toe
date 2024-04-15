@@ -52,7 +52,7 @@ export class AppComponent implements OnInit {
       this.currentPlayer.canPlay = false;
     } else if (onResultOfThePlay.result === 'draw') {
       this.userOne.canPlay = this.userTwo.canPlay = false;
-    } else {
+    } else if (onResultOfThePlay.result === 'in-progress') {
       this.userOne.canPlay = !this.userOne.canPlay;
       this.userTwo.canPlay = !this.userTwo.canPlay;
       this.currentPlayer = this.userOne.canPlay ? this.userOne : this.userTwo;

@@ -54,6 +54,7 @@ export class TicTacToeService {
     }
     if (this.gameState.includes('')) {
       this.gameActive = false;
+      console.log("gameState.includes(''): ", this.gameState.includes(''));
       return { result: 'in-progress' };
     }
     return {
