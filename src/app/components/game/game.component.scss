@@ -1,0 +1,10 @@
+.game-drid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  height: 300px;
+  width: 300px;
+  margin: 0 auto;
+}

@@ -1,3 +1,5 @@
+import { TIdentifier } from '../types/TIdentifier';
+
 interface IThumbnail {
   path: string;
   extension: string;
@@ -6,6 +8,7 @@ interface IThumbnail {
 export interface ICharacter {
   id: number;
   description: string;
+  identifier: TIdentifier;
   modified: string;
   name: string;
   canPlay: boolean;

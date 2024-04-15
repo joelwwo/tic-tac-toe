@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   userOne?: ICharacter;
   userTwo?: ICharacter;
   step: TSteps = 'select-participants';
+  currentPlayer!: ICharacter;
 
   constructor() {}
 
@@ -21,6 +22,7 @@ export class AppComponent implements OnInit {
   }
 
   selectOpponent(chosenCharacter: ICharacter) {
+    chosenCharacter.identifier = 'o';
     if (!this.userOne) {
       this.userOne = chosenCharacter;
       return;
@@ -32,6 +34,7 @@ export class AppComponent implements OnInit {
   }
 
   defineCharacterThatStartsTheGame(character: ICharacter) {
+    character.identifier = 'x';
     this.defineCharacterWhoPlaysInTurn(character);
     this.setStep('to-play');
   }
@@ -40,6 +43,7 @@ export class AppComponent implements OnInit {
     if (!this.userOne?.id || !this.userTwo?.id) return;
     this.userOne.canPlay = this.userTwo.canPlay = false;
     character.canPlay = true;
+    this.currentPlayer = character;
   }
 
   resetPlayers(resetAll = false) {
