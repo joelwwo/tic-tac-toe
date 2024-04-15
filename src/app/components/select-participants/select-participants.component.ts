@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { ICharacter } from 'src/app/interfaces/ICharacter';
-import { MarvelService } from 'src/app/services/marvel.service';
+import { MarvelService } from 'src/app/services/marvel/marvel.service';
 import { TSteps } from 'src/app/types/TSteps';
 
 @Component({
