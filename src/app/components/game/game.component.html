@@ -15,7 +15,7 @@
 
   <div>
     <button (click)="onResetGame.emit(true)">Reiniciar Jogo</button>
-    <button (click)="onResultOfThePlay.emit({ championDefined: true })">
+    <button (click)="onResultOfThePlay.emit({ result: 'winner-defined' })">
       Definir o vencedor
     </button>
   </div>

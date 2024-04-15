@@ -1,3 +1,5 @@
+import { TResult } from '../types/TResult';
+
 export interface IResultOfThePlay {
-  championDefined: boolean;
+  result: TResult;
 }
