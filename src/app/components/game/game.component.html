@@ -2,15 +2,14 @@
   <h1>Hora do jogo</h1>
 
   <div class="box-game">
-    <div class="game">
-      <div
+    <div class="game-drid">
+      <ng-container
         *ngFor="let state of ticTacToeService.gameState; let i = index"
-        class="game-drid"
       >
         <div (click)="ticTacToeService.handleClick(i)">
           {{ state?.identifier ? state?.identifier : "" }}
         </div>
-      </div>
+      </ng-container>
     </div>
   </div>
 
