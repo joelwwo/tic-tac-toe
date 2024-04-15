@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ICharacter } from './interfaces/ICharacter';
 import { TSteps } from './types/TSteps';
+import { IResultOfThePlay } from './interfaces/IResultOfThePlay';
 
 @Component({
   selector: 'app-root',
@@ -42,11 +43,17 @@ export class AppComponent implements OnInit {
     this.setStep('to-play');
   }
 
-  toggleCurrentPlayer() {
+  toggleCurrentPlayer(onResultOfThePlay: IResultOfThePlay) {
     if (!this.userOne?.id || !this.userTwo?.id) return;
-    this.userOne.canPlay = !this.userOne.canPlay;
-    this.userTwo.canPlay = !this.userTwo.canPlay;
-    this.currentPlayer = this.userOne.canPlay ? this.userOne : this.userTwo;
+    if (onResultOfThePlay.championDefined === true) {
+      this.currentPlayer.points++;
+      this.currentPlayer.canPlay = false;
+      console.log('Vencedor', this.currentPlayer);
+    } else {
+      this.userOne.canPlay = !this.userOne.canPlay;
+      this.userTwo.canPlay = !this.userTwo.canPlay;
+      this.currentPlayer = this.userOne.canPlay ? this.userOne : this.userTwo;
+    }
   }
 
   resetPlayers(resetAll = false) {
