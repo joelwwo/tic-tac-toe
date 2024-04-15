@@ -6,7 +6,7 @@
       <ng-container
         *ngFor="let state of ticTacToeService.gameState; let i = index"
       >
-        <div (click)="ticTacToeService.handleClick(i)">
+        <div (click)="onClick(i)">
           {{ state?.identifier ? state?.identifier : "" }}
         </div>
       </ng-container>

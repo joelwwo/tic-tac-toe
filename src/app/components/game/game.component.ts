@@ -20,6 +20,7 @@ export class GameComponent implements OnInit, OnChanges {
   @Input() step!: TSteps;
   @Input() currentPlayer!: ICharacter;
   @Output() onResetGame = new EventEmitter<boolean>();
+  @Output() toggleCurrentPlayer = new EventEmitter<boolean>();
 
   constructor(public ticTacToeService: TicTacToeService) {}
 
@@ -30,5 +31,10 @@ export class GameComponent implements OnInit, OnChanges {
       this.ticTacToeService.currentPlayer = this.currentPlayer;
       console.log('currentPlayerOnservice: ', this.currentPlayer);
     }
+  }
+
+  onClick(index: number): void {
+    this.ticTacToeService.handleClick(index);
+    this.toggleCurrentPlayer.emit(true);
   }
 }
