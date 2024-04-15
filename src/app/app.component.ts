@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ICharacter } from './interfaces/ICharacter';
 import { TSteps } from './types/TSteps';
 import { IResultOfThePlay } from './interfaces/IResultOfThePlay';
+import { MChatacters } from './Mocks/MCharacters';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,12 @@ export class AppComponent implements OnInit {
   step: TSteps = 'select-participants';
   currentPlayer!: ICharacter;
 
-  constructor() {}
+  constructor() {
+    this.userOne = MChatacters[0];
+    this.userTwo = MChatacters[1];
+    this.defineCharacterThatStartsTheGame(this.userOne);
+    this.setStep('to-play');
+  }
 
   ngOnInit() {}
 

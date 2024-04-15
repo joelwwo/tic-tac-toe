@@ -7,9 +7,7 @@ interface IThumbnail {
 
 export interface ICharacter {
   id: number;
-  description: string;
   identifier: TIdentifier;
-  modified: string;
   name: string;
   canPlay: boolean;
   points: number;

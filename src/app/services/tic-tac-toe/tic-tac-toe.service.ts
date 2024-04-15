@@ -39,6 +39,12 @@ export class TicTacToeService {
   // };
 
   checkWinner(): IResultOfThePlay {
+    if (this.gameState.includes('')) {
+      this.gameActive = false;
+      console.log("gameState.includes(''): ", this.gameState.includes(''));
+      return { result: 'in-progress' };
+    }
+
     for (let condition of this.winningConditions) {
       const [a, b, c] = condition;
       if (
@@ -52,11 +58,11 @@ export class TicTacToeService {
         };
       }
     }
-    if (this.gameState.includes('')) {
-      this.gameActive = false;
-      console.log("gameState.includes(''): ", this.gameState.includes(''));
-      return { result: 'in-progress' };
-    }
+    // if (this.gameState.includes('')) {
+    //   this.gameActive = false;
+    //   console.log("gameState.includes(''): ", this.gameState.includes(''));
+    //   return { result: 'in-progress' };
+    // }
     return {
       result: 'draw',
     };
