@@ -44,7 +44,6 @@ export class AppComponent implements OnInit {
   }
 
   toggleCurrentPlayer(onResultOfThePlay: IResultOfThePlay) {
-    debugger;
     if (!this.userOne?.id || !this.userTwo?.id) return;
     if (onResultOfThePlay.result === 'winner-defined') {
       this.currentPlayer.points++;
