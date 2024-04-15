@@ -1,18 +1,15 @@
-<div *ngIf="resultFromSearch">
-  <pre>{{ search.value }}  </pre>
-</div>
+<app-score [userOne]="userOne" [userTwo]="userTwo"></app-score>
 
-<div>
-  <input controllName="search" type="text" name="" id="" />
-</div>
+<app-select-participants
+  (selectedCharacter)="selectOpponent($event)"
+  [step]="step"
+></app-select-participants>
 
-<div *ngIf="resultFromSearch" class="box-result">
-  <div *ngFor="let item of resultFromSearch.results">
-    <div>
-      <img
-        src="{{ item.thumbnail.path }}.{{ item.thumbnail.extension }}"
-        alt=""
-      />
-    </div>
-  </div>
-</div>
+<app-draw
+  *ngIf="userOne && userTwo"
+  [step]="step"
+  [characters]="[userOne, userTwo]"
+  (drawnCharacter)="defineCharacterThatStartsTheGame($event)"
+></app-draw>
+
+<app-game [step]="step" (onResetGame)="resetGame()"></app-game>

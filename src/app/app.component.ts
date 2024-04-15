@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MarvelService } from './services/marvel.service';
-import { FormControl } from '@angular/forms';
+import { ICharacter } from './interfaces/ICharacter';
+import { TSteps } from './types/TSteps';
 
 @Component({
   selector: 'app-root',
@@ -8,15 +8,51 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'tic-tac-toe';
-  resultFromSearch: any;
-  search = new FormControl('');
+  userOne?: ICharacter;
+  userTwo?: ICharacter;
+  step: TSteps = 'select-participants';
 
-  constructor(private marvelService: MarvelService) {}
+  constructor() {}
 
-  ngOnInit() {
-    this.marvelService.getCharacters('w').subscribe((res: any) => {
-      this.resultFromSearch = res.data;
-    });
+  ngOnInit() {}
+
+  setStep(step: TSteps) {
+    this.step = step;
+  }
+
+  selectOpponent(chosenCharacter: ICharacter) {
+    if (!this.userOne) {
+      this.userOne = chosenCharacter;
+      return;
+    }
+
+    this.userTwo = chosenCharacter;
+    this.resetPlayers();
+    this.setStep('draw');
+  }
+
+  defineCharacterThatStartsTheGame(character: ICharacter) {
+    this.defineCharacterWhoPlaysInTurn(character);
+    this.setStep('to-play');
+  }
+
+  defineCharacterWhoPlaysInTurn(character: ICharacter) {
+    if (!this.userOne?.id || !this.userTwo?.id) return;
+    this.userOne.canPlay = this.userTwo.canPlay = false;
+    character.canPlay = true;
+  }
+
+  resetPlayers(resetAll = false) {
+    if (!this.userOne?.id || !this.userTwo?.id) return;
+    if (resetAll) this.userOne = this.userTwo = undefined;
+    else {
+      this.userOne.points = this.userTwo.points = 0;
+      this.userOne.canPlay = this.userTwo.canPlay = false;
+    }
+  }
+
+  resetGame() {
+    this.setStep('select-participants');
+    this.resetPlayers(true);
   }
 }
