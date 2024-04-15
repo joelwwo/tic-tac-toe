@@ -25,8 +25,6 @@ export class TicTacToeService {
   checkWinner() {}
 
   handleClick(index: number): void {
-    console.log('index: ', index);
-    console.log('currentPlayer: ', this.currentPlayer);
     if (this.gameState[index] || !this.gameActive) return;
     this.gameState[index] = this.currentPlayer;
   }

@@ -48,7 +48,6 @@ export class AppComponent implements OnInit {
     if (onResultOfThePlay.championDefined === true) {
       this.currentPlayer.points++;
       this.currentPlayer.canPlay = false;
-      console.log('Vencedor', this.currentPlayer);
     } else {
       this.userOne.canPlay = !this.userOne.canPlay;
       this.userTwo.canPlay = !this.userTwo.canPlay;
