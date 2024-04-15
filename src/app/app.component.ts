@@ -20,12 +20,15 @@ export class AppComponent implements OnInit {
     this.step = step;
   }
 
-  selectOpponent(character: ICharacter) {
-    if (this.userOne?.id) {
-      this.userTwo = character;
-      this.resetPlayers();
-      this.setStep('draw');
-    } else this.userOne = character;
+  selectOpponent(chosenCharacter: ICharacter) {
+    if (!this.userOne) {
+      this.userOne = chosenCharacter;
+      return;
+    }
+
+    this.userTwo = chosenCharacter;
+    this.resetPlayers();
+    this.setStep('draw');
   }
 
   defineCharacterThatStartsTheGame(character: ICharacter) {
