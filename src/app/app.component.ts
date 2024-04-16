@@ -61,13 +61,15 @@ export class AppComponent {
 
     if (resultsToStopTheGame.includes(result))
       this.currentPlayer.canPlay = false;
-
     if (result === 'winner-defined') this.currentPlayer.points++;
-    else if (result === 'in-progress') {
-      this.userOne.canPlay = !this.userOne.canPlay;
-      this.userTwo.canPlay = !this.userTwo.canPlay;
-      this.currentPlayer = this.userOne.canPlay ? this.userOne : this.userTwo;
-    }
+    else if (result === 'in-progress') this.setCurrentPlayer();
+  }
+
+  setCurrentPlayer() {
+    if (!this.userOne?.id || !this.userTwo?.id) return;
+    this.userOne.canPlay = !this.userOne.canPlay;
+    this.userTwo.canPlay = !this.userTwo.canPlay;
+    this.currentPlayer = this.userOne.canPlay ? this.userOne : this.userTwo;
   }
 
   restartGame() {
