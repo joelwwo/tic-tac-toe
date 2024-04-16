@@ -45,12 +45,14 @@ export class TicTacToeService {
       return { result: 'in-progress' };
     }
 
+    const gameState = this.gameState as ICharacter[];
+
     for (let condition of this.winningConditions) {
       const [a, b, c] = condition;
       if (
-        this.gameState[a] &&
-        this.gameState[a] === this.gameState[b] &&
-        this.gameState[a] === this.gameState[c]
+        gameState[a].identifier &&
+        gameState[a] === gameState[b] &&
+        gameState[a] === gameState[c]
       ) {
         return {
           result: 'winner-defined',
