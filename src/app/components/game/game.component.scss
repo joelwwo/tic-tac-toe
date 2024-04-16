@@ -1,3 +1,11 @@
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 50px;
+}
+
 .box-game {
   margin: 20px 0;
   display: flex;
