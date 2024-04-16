@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ICharacter } from 'src/app/interfaces/ICharacter';
 import { TSteps } from 'src/app/types/TSteps';
 
@@ -7,14 +7,10 @@ import { TSteps } from 'src/app/types/TSteps';
   templateUrl: './draw.component.html',
   styleUrls: ['./draw.component.scss'],
 })
-export class DrawComponent implements OnInit {
+export class DrawComponent {
   @Input() step!: TSteps;
   @Input() characters!: ICharacter[];
   @Output() drawnCharacter = new EventEmitter<ICharacter>();
-
-  constructor() {}
-
-  ngOnInit(): void {}
 
   drawCharacter() {
     const randomIndex = Math.floor(Math.random() * this.characters.length);

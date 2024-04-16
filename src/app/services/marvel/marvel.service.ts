@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
+import { Observable, catchError, map, of } from 'rxjs';
 import crypto from 'crypto-js';
+
 import { environment } from 'src/environments/environment';
 import { ICharacter } from '../../interfaces/ICharacter';
-import { Observable, catchError, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

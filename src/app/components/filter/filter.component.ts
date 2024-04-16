@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -6,11 +6,7 @@ import { FormControl } from '@angular/forms';
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss'],
 })
-export class FilterComponent implements OnInit {
+export class FilterComponent {
   @Input() filter!: FormControl<string | null>;
   @Input() messageErro = '';
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }
