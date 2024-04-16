@@ -13,4 +13,9 @@ export class ScoreComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  getURLimage(character?: ICharacter): string {
+    if (!character) return 'assets/images/interrogation.png';
+    return `${character.thumbnail.path}.${character.thumbnail.extension}`;
+  }
 }

@@ -1,15 +1,31 @@
-<div>
-  <div>
-    {{ userOne?.name }} {{ userOne?.canPlay ? "🟢" : "" }} -
-    {{ userOne?.points || 0 }} ponto(s)
-  </div>
-</div>
+<section>
+  <div class="box-score">
+    <img
+      [ngClass]="{ selected: userTwo?.canPlay }"
+      [src]="getURLimage(userOne)"
+      [alt]="userOne?.name || 'Nome do personagem 1'"
+    />
 
-<div>
-  <div>
-    {{ userTwo?.name }} {{ userTwo?.canPlay ? "🟢" : "" }}-{{
-      userTwo?.points || 0
-    }}
-    ponto(s)
+    <div>
+      {{ userOne?.name }}
+      <div class="points">
+        {{ userOne?.points || 0 }}
+      </div>
+    </div>
   </div>
-</div>
+
+  <div class="box-score">
+    <img
+      [ngClass]="{ selected: userTwo?.canPlay }"
+      [src]="getURLimage(userTwo)"
+      [alt]="userTwo?.name || 'Nome do personagem 1'"
+    />
+
+    <div>
+      {{ userTwo?.name }}
+      <div class="points">
+        {{ userTwo?.points || 0 }}
+      </div>
+    </div>
+  </div>
+</section>
