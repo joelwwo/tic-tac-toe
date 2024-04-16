@@ -55,14 +55,9 @@ export class AppComponent {
   }
 
   toggleCurrentPlayerAndCheckWinner({ result }: IResultOfThePlay) {
-    if (!this.userOne?.id || !this.userTwo?.id) return;
-
-    const resultsToStopTheGame: TResult[] = ['draw', 'winner-defined'];
-
-    if (resultsToStopTheGame.includes(result))
-      this.currentPlayer.canPlay = false;
+    if (result !== 'in-progress') this.currentPlayer.canPlay = false;
     if (result === 'winner-defined') this.currentPlayer.points++;
-    else if (result === 'in-progress') this.toggleCurrentPlayer();
+    else this.toggleCurrentPlayer();
   }
 
   toggleCurrentPlayer() {
