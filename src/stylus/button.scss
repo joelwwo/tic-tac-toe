@@ -7,7 +7,13 @@ button {
   font-weight: bold;
   text-transform: uppercase;
   color: #fff;
-  color: #000;
-  background-color: #007bff;
-  background-color: var(--main);
+  background-color: var(--dark);
+
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: var(--main);
+    color: #000;
+    font-size: 14px;
+  }
 }

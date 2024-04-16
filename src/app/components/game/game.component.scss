@@ -21,7 +21,7 @@ section {
   div {
     display: grid;
     place-items: center;
-    background-color: aquamarine;
+    background-color: var(--main);
     width: 40px;
     height: 40px;
   }
