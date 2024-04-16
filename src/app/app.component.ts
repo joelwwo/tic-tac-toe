@@ -62,10 +62,10 @@ export class AppComponent {
     if (resultsToStopTheGame.includes(result))
       this.currentPlayer.canPlay = false;
     if (result === 'winner-defined') this.currentPlayer.points++;
-    else if (result === 'in-progress') this.setCurrentPlayer();
+    else if (result === 'in-progress') this.toggleCurrentPlayer();
   }
 
-  setCurrentPlayer() {
+  toggleCurrentPlayer() {
     if (!this.userOne?.id || !this.userTwo?.id) return;
     this.userOne.canPlay = !this.userOne.canPlay;
     this.userTwo.canPlay = !this.userTwo.canPlay;
