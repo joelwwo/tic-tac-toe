@@ -1,16 +1,30 @@
+section {
+  display: grid;
+  gap: 10px;
+  place-items: center;
+}
+
 img {
   width: 75px;
   height: 75px;
   object-fit: cover;
-  border-radius: 3px;
+  border-radius: var(--border-radius);
+  border: 2px solid transparent;
 }
 
 .box-result {
+  width: 100%;
   display: grid;
+  place-content: center;
   gap: 10px;
-  grid-template-columns: repeat(auto-fill, minmax(75px, 75px));
+  grid-template-columns: repeat(auto-fit, minmax(75px, 75px));
+  overflow-y: auto;
+  max-height: 50vh;
+  div {
+    animation: fadeIn 1s ease-in-out;
+  }
 }
 
 .character-selected {
-  border: 2px solid lightgreen;
+  border: 2px solid var(--main) !important;
 }

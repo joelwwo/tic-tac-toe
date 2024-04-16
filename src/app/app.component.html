@@ -1,20 +1,22 @@
-<app-score [userOne]="userOne" [userTwo]="userTwo"></app-score>
+<main>
+  <app-score [userOne]="userOne" [userTwo]="userTwo"></app-score>
 
-<app-select-participants
-  (selectedCharacter)="selectOpponents($event)"
-  [step]="step"
-></app-select-participants>
+  <app-select-participants
+    (selectedCharacter)="selectOpponents($event)"
+    [step]="step"
+  ></app-select-participants>
 
-<app-draw
-  *ngIf="userOne && userTwo"
-  [step]="step"
-  [characters]="[userOne, userTwo]"
-  (drawnCharacter)="defineCharacterThatStartsTheGame($event)"
-></app-draw>
+  <app-draw
+    *ngIf="userOne && userTwo"
+    [step]="step"
+    [characters]="[userOne, userTwo]"
+    (drawnCharacter)="defineCharacterThatStartsTheGame($event)"
+  ></app-draw>
 
-<app-game
-  [currentPlayer]="currentPlayer"
-  [step]="step"
-  (onResetGame)="restartGame()"
-  (onResultOfThePlay)="toggleCurrentPlayerAndCheckWinner($event)"
-></app-game>
+  <app-game
+    [currentPlayer]="currentPlayer"
+    [step]="step"
+    (onResetGame)="restartGame()"
+    (onResultOfThePlay)="toggleCurrentPlayerAndCheckWinner($event)"
+  ></app-game>
+</main>
