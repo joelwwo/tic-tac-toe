@@ -16,7 +16,7 @@ export class AppComponent {
   userTwo?: ICharacter;
   step: TSteps = 'select-participants';
   currentPlayer!: ICharacter;
-  initWithMocks = false;
+  initWithMocks = true;
 
   constructor() {
     this.setMockValues();

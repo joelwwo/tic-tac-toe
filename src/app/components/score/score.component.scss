@@ -17,6 +17,7 @@ section {
         object-fit: cover;
         border-radius: 50%;
         padding: 2px;
+        border: 2px solid transparent;
       }
       div {
         font-size: 16px;
@@ -31,6 +32,6 @@ section {
   }
 
   .selected {
-    border: 2px solid lightgreen;
+    border: 2px solid lightgreen !important;
   }
 }
