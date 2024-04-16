@@ -11,6 +11,5 @@ export interface ICharacter {
   name: string;
   canPlay: boolean;
   points: number;
-  resourceURI: string;
   thumbnail: IThumbnail;
 }

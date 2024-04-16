@@ -38,7 +38,22 @@ export class SelectParticipantsComponent implements OnInit {
   }
 
   chooseCharacter() {
-    this.selectedCharacter.emit(this.resultSelected);
+    const {
+      name,
+      id,
+      thumbnail,
+      canPlay = false,
+      points = 0,
+      identifier = 'o',
+    } = this.resultSelected as ICharacter;
+    this.selectedCharacter.emit({
+      name,
+      id,
+      thumbnail,
+      canPlay,
+      points,
+      identifier,
+    });
     this.filterDuplicatedResults(this.characters);
   }
 

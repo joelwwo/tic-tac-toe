@@ -16,7 +16,7 @@ export class AppComponent {
   step: TSteps = 'select-participants';
   currentPlayer!: ICharacter;
 
-  initWithMocks = true;
+  initWithMocks = false;
 
   constructor() {
     this.setMockValues();
@@ -36,14 +36,12 @@ export class AppComponent {
   }
 
   selectOpponent(chosenCharacter: ICharacter) {
-    chosenCharacter.identifier = 'o';
     if (!this.userOne) {
       this.userOne = chosenCharacter;
       return;
     }
 
     this.userTwo = chosenCharacter;
-    this.resetPlayers();
     this.setStep('draw');
   }
 
