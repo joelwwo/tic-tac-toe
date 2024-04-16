@@ -2,15 +2,6 @@ section {
   display: grid;
   gap: 10px;
   place-items: center;
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
 }
 
 img {
@@ -29,8 +20,9 @@ img {
   grid-template-columns: repeat(auto-fit, minmax(75px, 75px));
   overflow-y: auto;
   max-height: 50vh;
-
-  animation: fadeIn 1s ease-in-out;
+  div {
+    animation: fadeIn 1s ease-in-out;
+  }
 }
 
 .character-selected {
