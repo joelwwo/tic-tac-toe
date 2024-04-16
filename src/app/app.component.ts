@@ -54,17 +54,16 @@ export class AppComponent {
     this.setStep('to-play');
   }
 
-  toggleCurrentPlayerAndCheckWinner(onResultOfThePlay: IResultOfThePlay) {
+  toggleCurrentPlayerAndCheckWinner({ result }: IResultOfThePlay) {
     if (!this.userOne?.id || !this.userTwo?.id) return;
 
     const resultsToStopTheGame: TResult[] = ['draw', 'winner-defined'];
 
-    if (resultsToStopTheGame.includes(onResultOfThePlay.result))
+    if (resultsToStopTheGame.includes(result))
       this.currentPlayer.canPlay = false;
 
-    if (onResultOfThePlay.result === 'winner-defined')
-      this.currentPlayer.points++;
-    else if (onResultOfThePlay.result === 'in-progress') {
+    if (result === 'winner-defined') this.currentPlayer.points++;
+    else if (result === 'in-progress') {
       this.userOne.canPlay = !this.userOne.canPlay;
       this.userTwo.canPlay = !this.userTwo.canPlay;
       this.currentPlayer = this.userOne.canPlay ? this.userOne : this.userTwo;
