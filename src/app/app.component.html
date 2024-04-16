@@ -1,7 +1,7 @@
 <app-score [userOne]="userOne" [userTwo]="userTwo"></app-score>
 
 <app-select-participants
-  (selectedCharacter)="selectOpponent($event)"
+  (selectedCharacter)="selectOpponents($event)"
   [step]="step"
 ></app-select-participants>
 
@@ -12,4 +12,9 @@
   (drawnCharacter)="defineCharacterThatStartsTheGame($event)"
 ></app-draw>
 
-<app-game [step]="step" (onResetGame)="resetGame()"></app-game>
+<app-game
+  [currentPlayer]="currentPlayer"
+  [step]="step"
+  (onResetGame)="restartGame()"
+  (onResultOfThePlay)="toggleCurrentPlayerAndCheckWinner($event)"
+></app-game>

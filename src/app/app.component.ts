@@ -1,58 +1,74 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
 import { ICharacter } from './interfaces/ICharacter';
 import { TSteps } from './types/TSteps';
+import { IResultOfThePlay } from './interfaces/IResultOfThePlay';
+import { MChatacters } from './Mocks/MCharacters';
+import { TResult } from './types/TResult';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   userOne?: ICharacter;
   userTwo?: ICharacter;
   step: TSteps = 'select-participants';
+  currentPlayer!: ICharacter;
+  initWithMocks = false;
 
-  constructor() {}
+  constructor() {
+    this.setMockValues();
+  }
 
-  ngOnInit() {}
+  setMockValues() {
+    if (this.initWithMocks) {
+      this.userOne = MChatacters[0];
+      this.userTwo = MChatacters[1];
+      this.defineCharacterThatStartsTheGame(this.userOne);
+      this.setStep('to-play');
+    }
+  }
 
   setStep(step: TSteps) {
     this.step = step;
   }
 
-  selectOpponent(chosenCharacter: ICharacter) {
+  selectOpponents(chosenCharacter: ICharacter) {
     if (!this.userOne) {
       this.userOne = chosenCharacter;
       return;
     }
 
     this.userTwo = chosenCharacter;
-    this.resetPlayers();
     this.setStep('draw');
   }
 
   defineCharacterThatStartsTheGame(character: ICharacter) {
-    this.defineCharacterWhoPlaysInTurn(character);
-    this.setStep('to-play');
-  }
-
-  defineCharacterWhoPlaysInTurn(character: ICharacter) {
+    character.identifier = 'x';
+    this.currentPlayer = character;
     if (!this.userOne?.id || !this.userTwo?.id) return;
     this.userOne.canPlay = this.userTwo.canPlay = false;
     character.canPlay = true;
+    this.setStep('to-play');
   }
 
-  resetPlayers(resetAll = false) {
+  toggleCurrentPlayerAndCheckWinner({ result }: IResultOfThePlay) {
+    if (result !== 'in-progress') this.currentPlayer.canPlay = false;
+    if (result === 'winner-defined') this.currentPlayer.points++;
+    else this.toggleCurrentPlayer();
+  }
+
+  toggleCurrentPlayer() {
     if (!this.userOne?.id || !this.userTwo?.id) return;
-    if (resetAll) this.userOne = this.userTwo = undefined;
-    else {
-      this.userOne.points = this.userTwo.points = 0;
-      this.userOne.canPlay = this.userTwo.canPlay = false;
-    }
+    this.userOne.canPlay = !this.userOne.canPlay;
+    this.userTwo.canPlay = !this.userTwo.canPlay;
+    this.currentPlayer = this.userOne.canPlay ? this.userOne : this.userTwo;
   }
 
-  resetGame() {
-    this.setStep('select-participants');
-    this.resetPlayers(true);
+  restartGame() {
+    this.setMockValues();
+    this.currentPlayer.canPlay = true;
   }
 }

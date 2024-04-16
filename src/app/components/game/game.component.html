@@ -1,6 +1,19 @@
 <ng-container *ngIf="step === 'to-play'">
   <h1>Hora do jogo</h1>
+
+  <div class="box-game">
+    <div class="game-drid">
+      <ng-container
+        *ngFor="let state of ticTacToeService.gameState; let i = index"
+      >
+        <div (click)="onClick(i)">
+          {{ state?.identifier ? state?.identifier : "" }}
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
   <div>
-    <button (click)="onResetGame.emit(true)">Reiniciar Jogo</button>
+    <button (click)="resetGame()">Reiniciar Jogo</button>
   </div>
 </ng-container>

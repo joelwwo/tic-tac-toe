@@ -1,7 +1,15 @@
 <div>
-  <div>{{ userOne?.name }} {{ userOne?.canPlay ? "🟢" : "" }}</div>
+  <div>
+    {{ userOne?.name }} {{ userOne?.canPlay ? "🟢" : "" }} -
+    {{ userOne?.points || 0 }} ponto(s)
+  </div>
 </div>
 
 <div>
-  <div>{{ userTwo?.name }} {{ userTwo?.canPlay ? "🟢" : "" }}</div>
+  <div>
+    {{ userTwo?.name }} {{ userTwo?.canPlay ? "🟢" : "" }}-{{
+      userTwo?.points || 0
+    }}
+    ponto(s)
+  </div>
 </div>
