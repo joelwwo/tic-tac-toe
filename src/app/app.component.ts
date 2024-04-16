@@ -78,8 +78,13 @@ export class AppComponent {
   }
 
   resetGame() {
-    this.setStep('select-participants');
-    this.resetPlayers(true);
+    // this.setStep('select-participants');
+    // this.resetPlayers(true);
     this.setMockValues();
+  }
+
+  restartGame() {
+    this.setMockValues();
+    this.currentPlayer.canPlay = true;
   }
 }

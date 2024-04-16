@@ -15,6 +15,6 @@
 <app-game
   [currentPlayer]="currentPlayer"
   [step]="step"
-  (onResetGame)="resetGame()"
+  (onResetGame)="restartGame()"
   (onResultOfThePlay)="toggleCurrentPlayerAndCheckWinner($event)"
 ></app-game>
