@@ -14,8 +14,8 @@
       </div>
     </div>
 
-    <div>
-      {{ userOne?.name }}
+    <div class="box-information">
+      <div class="name" [title]="userOne?.name">{{ userOne?.name }}</div>
       <div class="points">
         {{ userOne?.points || 0 }}
       </div>
@@ -35,8 +35,8 @@
       </div>
     </div>
 
-    <div>
-      {{ userTwo?.name }}
+    <div class="box-information">
+      <div class="name" [title]="userTwo?.name">{{ userTwo?.name }}</div>
       <div class="points">
         {{ userTwo?.points || 0 }}
       </div>

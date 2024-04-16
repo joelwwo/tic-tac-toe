@@ -39,9 +39,17 @@ section {
         }
       }
     }
-    .points {
-      font-weight: bold;
-      font-size: 25px;
+
+    .box-information {
+      .name {
+        font-weight: 500;
+        text-transform: capitalize;
+      }
+      .points {
+        font-weight: bold;
+        font-size: 25px;
+        animation: increment 2s ease-in-out;
+      }
     }
   }
 
