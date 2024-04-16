@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
 import { ICharacter } from './interfaces/ICharacter';
 import { TSteps } from './types/TSteps';
 import { IResultOfThePlay } from './interfaces/IResultOfThePlay';
@@ -9,7 +10,7 @@ import { MChatacters } from './Mocks/MCharacters';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   userOne?: ICharacter;
   userTwo?: ICharacter;
   step: TSteps = 'select-participants';
@@ -29,8 +30,6 @@ export class AppComponent implements OnInit {
       this.setStep('to-play');
     }
   }
-
-  ngOnInit() {}
 
   setStep(step: TSteps) {
     this.step = step;
@@ -58,8 +57,6 @@ export class AppComponent implements OnInit {
   }
 
   toggleCurrentPlayerAndCheckWinner(onResultOfThePlay: IResultOfThePlay) {
-    console.log(onResultOfThePlay);
-    // debugger;
     if (!this.userOne?.id || !this.userTwo?.id) return;
     if (onResultOfThePlay.result === 'winner-defined') {
       this.currentPlayer.points++;
