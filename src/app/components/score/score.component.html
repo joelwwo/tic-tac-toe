@@ -7,7 +7,11 @@
         [alt]="userOne?.name || 'Nome do personagem 1'"
         onerror="this.src='assets/images/character.png'"
       />
-      <div>{{ userOne?.identifier }}</div>
+      <div>
+        <span>
+          {{ userOne?.identifier }}
+        </span>
+      </div>
     </div>
 
     <div>
@@ -26,7 +30,9 @@
         [alt]="userTwo?.name || 'Nome do personagem 1'"
         onerror="this.src='assets/images/character.png'"
       />
-      <div>{{ userTwo?.identifier }}</div>
+      <div>
+        <span>{{ userTwo?.identifier }}</span>
+      </div>
     </div>
 
     <div>
