@@ -1,10 +1,14 @@
 <section>
   <div class="box-score">
-    <img
-      [ngClass]="{ selected: userTwo?.canPlay }"
-      [src]="getURLimage(userOne)"
-      [alt]="userOne?.name || 'Nome do personagem 1'"
-    />
+    <div class="box-image">
+      <img
+        [ngClass]="{ selected: userOne?.canPlay }"
+        [src]="getURLimage(userOne)"
+        [alt]="userOne?.name || 'Nome do personagem 1'"
+        onerror="this.src='assets/images/character.png'"
+      />
+      <div>{{ userOne?.identifier }}</div>
+    </div>
 
     <div>
       {{ userOne?.name }}
@@ -15,11 +19,15 @@
   </div>
 
   <div class="box-score">
-    <img
-      [ngClass]="{ selected: userTwo?.canPlay }"
-      [src]="getURLimage(userTwo)"
-      [alt]="userTwo?.name || 'Nome do personagem 1'"
-    />
+    <div class="box-image">
+      <img
+        [ngClass]="{ selected: userTwo?.canPlay === true }"
+        [src]="getURLimage(userTwo)"
+        [alt]="userTwo?.name || 'Nome do personagem 1'"
+        onerror="this.src='assets/images/character.png'"
+      />
+      <div>{{ userTwo?.identifier }}</div>
+    </div>
 
     <div>
       {{ userTwo?.name }}
