@@ -4,6 +4,7 @@ import { ICharacter } from './interfaces/ICharacter';
 import { TSteps } from './types/TSteps';
 import { IResultOfThePlay } from './interfaces/IResultOfThePlay';
 import { MChatacters } from './Mocks/MCharacters';
+import { TResult } from './types/TResult';
 
 @Component({
   selector: 'app-root',
@@ -34,7 +35,7 @@ export class AppComponent {
     this.step = step;
   }
 
-  selectOpponent(chosenCharacter: ICharacter) {
+  selectOpponents(chosenCharacter: ICharacter) {
     if (!this.userOne) {
       this.userOne = chosenCharacter;
       return;
@@ -55,12 +56,15 @@ export class AppComponent {
 
   toggleCurrentPlayerAndCheckWinner(onResultOfThePlay: IResultOfThePlay) {
     if (!this.userOne?.id || !this.userTwo?.id) return;
-    if (onResultOfThePlay.result === 'winner-defined') {
-      this.currentPlayer.points++;
+
+    const resultsToStopTheGame: TResult[] = ['draw', 'winner-defined'];
+
+    if (resultsToStopTheGame.includes(onResultOfThePlay.result))
       this.currentPlayer.canPlay = false;
-    } else if (onResultOfThePlay.result === 'draw') {
-      this.userOne.canPlay = this.userTwo.canPlay = false;
-    } else if (onResultOfThePlay.result === 'in-progress') {
+
+    if (onResultOfThePlay.result === 'winner-defined')
+      this.currentPlayer.points++;
+    else if (onResultOfThePlay.result === 'in-progress') {
       this.userOne.canPlay = !this.userOne.canPlay;
       this.userTwo.canPlay = !this.userTwo.canPlay;
       this.currentPlayer = this.userOne.canPlay ? this.userOne : this.userTwo;
