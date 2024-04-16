@@ -14,9 +14,6 @@
   </div>
 
   <div>
-    <button (click)="onResetGame.emit(true)">Reiniciar Jogo</button>
-    <button (click)="onResultOfThePlay.emit({ result: 'winner-defined' })">
-      Definir o vencedor
-    </button>
+    <button (click)="resetGame()">Reiniciar Jogo</button>
   </div>
 </ng-container>

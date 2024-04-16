@@ -15,11 +15,19 @@ export class AppComponent implements OnInit {
   step: TSteps = 'select-participants';
   currentPlayer!: ICharacter;
 
+  initWithMocks = true;
+
   constructor() {
-    this.userOne = MChatacters[0];
-    this.userTwo = MChatacters[1];
-    this.defineCharacterThatStartsTheGame(this.userOne);
-    this.setStep('to-play');
+    this.setMockValues();
+  }
+
+  setMockValues() {
+    if (this.initWithMocks) {
+      this.userOne = MChatacters[0];
+      this.userTwo = MChatacters[1];
+      this.defineCharacterThatStartsTheGame(this.userOne);
+      this.setStep('to-play');
+    }
   }
 
   ngOnInit() {}
@@ -77,5 +85,6 @@ export class AppComponent implements OnInit {
   resetGame() {
     this.setStep('select-participants');
     this.resetPlayers(true);
+    this.setMockValues();
   }
 }

@@ -38,12 +38,13 @@ export class GameComponent implements OnInit, OnChanges {
   }
 
   onClick(index: number): void {
+    if (this.ticTacToeService.checkWinner().result !== 'in-progress') return;
     this.ticTacToeService.handleClick(index);
-
-    // this.onResultOfThePlay.emit({
-    //   result: 'in-progress',
-    // });
-
     this.onResultOfThePlay.emit(this.ticTacToeService.checkWinner());
+  }
+
+  resetGame(): void {
+    this.ticTacToeService.resetGameState();
+    this.onResetGame.emit(true);
   }
 }
