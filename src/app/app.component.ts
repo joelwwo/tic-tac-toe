@@ -15,7 +15,6 @@ export class AppComponent {
   userTwo?: ICharacter;
   step: TSteps = 'select-participants';
   currentPlayer!: ICharacter;
-
   initWithMocks = false;
 
   constructor() {
@@ -66,21 +65,6 @@ export class AppComponent {
       this.userTwo.canPlay = !this.userTwo.canPlay;
       this.currentPlayer = this.userOne.canPlay ? this.userOne : this.userTwo;
     }
-  }
-
-  resetPlayers(resetAll = false) {
-    if (!this.userOne?.id || !this.userTwo?.id) return;
-    if (resetAll) this.userOne = this.userTwo = undefined;
-    else {
-      this.userOne.points = this.userTwo.points = 0;
-      this.userOne.canPlay = this.userTwo.canPlay = false;
-    }
-  }
-
-  resetGame() {
-    // this.setStep('select-participants');
-    // this.resetPlayers(true);
-    this.setMockValues();
   }
 
   restartGame() {
