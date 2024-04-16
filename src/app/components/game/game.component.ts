@@ -40,10 +40,10 @@ export class GameComponent implements OnInit, OnChanges {
   onClick(index: number): void {
     this.ticTacToeService.handleClick(index);
 
-    this.onResultOfThePlay.emit({
-      result: 'in-progress',
-    });
+    // this.onResultOfThePlay.emit({
+    //   result: 'in-progress',
+    // });
 
-    // this.onResultOfThePlay.emit(this.ticTacToeService.checkWinner());
+    this.onResultOfThePlay.emit(this.ticTacToeService.checkWinner());
   }
 }
