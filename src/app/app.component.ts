@@ -4,7 +4,6 @@ import { ICharacter } from './interfaces/ICharacter';
 import { TSteps } from './types/TSteps';
 import { IResultOfThePlay } from './interfaces/IResultOfThePlay';
 import { MChatacters } from './Mocks/MCharacters';
-import { TResult } from './types/TResult';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +15,7 @@ export class AppComponent {
   userTwo?: ICharacter;
   step: TSteps = 'select-participants';
   currentPlayer!: ICharacter;
-  initWithMocks = true;
+  initWithMocks = false;
 
   constructor() {
     this.setMockValues();

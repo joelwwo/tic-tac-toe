@@ -1,5 +1,5 @@
-<ng-container *ngIf="step === 'select-participants'">
-  <h1>Selecione os participantes</h1>
+<section *ngIf="step === 'select-participants'">
+  <h6>Selecione os participantes</h6>
 
   <div>
     <app-filter [filter]="filter" [messageErro]="messageErro"></app-filter>
@@ -24,9 +24,8 @@
         </div>
       </div>
     </div>
-
-    <div *ngIf="resultSelected">
-      <button (click)="chooseCharacter()">Escolher</button>
-    </div>
   </div>
-</ng-container>
+  <div *ngIf="resultSelected">
+    <button (click)="chooseCharacter()">Escolher</button>
+  </div>
+</section>
