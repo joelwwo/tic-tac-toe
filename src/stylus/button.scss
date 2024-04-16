@@ -1,0 +1,13 @@
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  color: #000;
+  background-color: #007bff;
+  background-color: var(--main);
+}
