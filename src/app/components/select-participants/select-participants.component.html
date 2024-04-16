@@ -7,17 +7,15 @@
 
   <div class="box-result">
     <div *ngFor="let character of characters">
-      <div
-        (click)="selectCharacter(character)"
-        [ngClass]="{
-          'character-selected': character.id === resultSelected?.id
-        }"
-      >
+      <div (click)="selectCharacter(character)">
         <img
+          [ngClass]="{
+            'character-selected': character.id === resultSelected?.id
+          }"
           src="{{ character.thumbnail.path }}.{{
             character.thumbnail.extension
           }}"
-          alt=""
+          [alt]="character.name"
         />
         <div>
           <small>{{ character.name }}</small>

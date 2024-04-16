@@ -17,7 +17,8 @@ img {
   width: 75px;
   height: 75px;
   object-fit: cover;
-  border-radius: 3px;
+  border-radius: var(--border-radius);
+  border: 2px solid transparent;
 }
 
 .box-result {
@@ -33,5 +34,5 @@ img {
 }
 
 .character-selected {
-  border: 2px solid lightgreen;
+  border: 2px solid var(--main) !important;
 }
