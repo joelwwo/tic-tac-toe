@@ -110,8 +110,9 @@ export class TicTacToeService {
 
   setMockValues() {
     if (this.initWithMocks) {
-      this.userOne = MChatacters[0];
-      this.userTwo = MChatacters[1];
+      this.setUserOne({ ...MChatacters[0] });
+      this.setUserTwo({ ...MChatacters[1] });
+
       this.defineCharacterThatStartsTheGame(this.userOne);
       this.setStep('to-play');
     }
