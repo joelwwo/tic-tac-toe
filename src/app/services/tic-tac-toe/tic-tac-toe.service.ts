@@ -102,9 +102,9 @@ export class TicTacToeService {
   }
 
   toggleCurrentPlayer() {
-    if (!this.userOne?.id || !this.userTwo?.id) return;
-    this.userOne.canPlay = !this.userOne.canPlay;
-    this.userTwo.canPlay = !this.userTwo.canPlay;
+    this.setUserOne({ canPlay: !this.userOne.canPlay });
+    this.setUserTwo({ canPlay: !this.userTwo.canPlay });
+
     this.currentPlayer = this.userOne.canPlay ? this.userOne : this.userTwo;
   }
 
@@ -122,6 +122,10 @@ export class TicTacToeService {
     this.currentPlayer.canPlay = true;
   }
 
+  get getCurrentPlayer() {
+    return this.currentPlayer;
+  }
+
   get getUserOne() {
     return this.userOne;
   }
@@ -130,11 +134,11 @@ export class TicTacToeService {
     return this.userTwo;
   }
 
-  set setUserOne(character: ICharacter) {
-    this.userOne = character;
+  setUserOne(character: Partial<ICharacter>) {
+    this.userOne = { ...this.userOne, ...character };
   }
 
-  set setUserTwo(character: ICharacter) {
-    this.userTwo = character;
+  setUserTwo(character: Partial<ICharacter>) {
+    this.userTwo = { ...this.userTwo, ...character };
   }
 }
