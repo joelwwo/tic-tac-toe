@@ -1,22 +1,25 @@
 <main>
-  <app-score [userOne]="userOne" [userTwo]="userTwo"></app-score>
+  <app-score
+    [userOne]="ticTacToeService.getUserOne"
+    [userTwo]="ticTacToeService.getUserTwo"
+  ></app-score>
 
   <app-select-participants
-    (selectedCharacter)="selectOpponents($event)"
-    [step]="step"
+    (selectedCharacter)="ticTacToeService.selectOpponents($event)"
+    [step]="ticTacToeService.step"
   ></app-select-participants>
 
   <app-draw
-    *ngIf="userOne && userTwo"
-    [step]="step"
-    [characters]="[userOne, userTwo]"
-    (drawnCharacter)="defineCharacterThatStartsTheGame($event)"
+    [step]="ticTacToeService.step"
+    [characters]="[ticTacToeService.getUserOne, ticTacToeService.getUserTwo]"
+    (drawnCharacter)="ticTacToeService.defineCharacterThatStartsTheGame($event)"
   ></app-draw>
 
   <app-game
-    [currentPlayer]="currentPlayer"
-    [step]="step"
-    (onResetGame)="restartGame()"
-    (onResultOfThePlay)="toggleCurrentPlayerAndCheckWinner($event)"
+    [step]="ticTacToeService.step"
+    (onResetGame)="ticTacToeService.restartGame()"
+    (onResultOfThePlay)="
+      ticTacToeService.toggleCurrentPlayerAndCheckWinner($event)
+    "
   ></app-game>
 </main>

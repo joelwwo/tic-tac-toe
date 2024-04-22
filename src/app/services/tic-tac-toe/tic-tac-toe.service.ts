@@ -1,12 +1,21 @@
 import { Injectable, Input } from '@angular/core';
+import { MChatacters } from 'src/app/Mocks/MCharacters';
 import { ICharacter } from 'src/app/interfaces/ICharacter';
 import { IResultOfThePlay } from 'src/app/interfaces/IResultOfThePlay';
+import { TSteps } from 'src/app/types/TSteps';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TicTacToeService {
-  @Input() currentPlayer!: ICharacter;
+  // teste
+  private userOne: ICharacter = MChatacters[0];
+  userTwo: ICharacter = MChatacters[1];
+  step: TSteps = 'select-participants';
+  currentPlayer!: ICharacter;
+  initWithMocks = false;
+  // fim teste
+
   gameState: any = ['', '', '', '', '', '', '', '', ''];
 
   winningConditions = [
@@ -51,5 +60,71 @@ export class TicTacToeService {
   handleClick(index: number): void {
     if (this.gameState[index] || this.currentPlayer.canPlay === false) return;
     this.gameState[index] = this.currentPlayer;
+  }
+
+  setStep(step: TSteps) {
+    this.step = step;
+  }
+
+  selectOpponents(chosenCharacter: ICharacter) {
+    if (!this.userOne.id) {
+      this.userOne = chosenCharacter;
+      return;
+    }
+
+    this.userTwo = chosenCharacter;
+    this.setStep('draw');
+  }
+
+  defineCharacterThatStartsTheGame(character: ICharacter) {
+    character.identifier = 'x';
+    this.currentPlayer = character;
+    if (!this.userOne.id || !this.userTwo.id) return;
+    this.userOne.canPlay = this.userTwo.canPlay = false;
+    character.canPlay = true;
+    this.setStep('to-play');
+  }
+
+  toggleCurrentPlayerAndCheckWinner({ result }: IResultOfThePlay) {
+    if (result !== 'in-progress') this.currentPlayer.canPlay = false;
+    if (result === 'winner-defined') this.currentPlayer.points++;
+    else this.toggleCurrentPlayer();
+  }
+
+  toggleCurrentPlayer() {
+    if (!this.userOne?.id || !this.userTwo?.id) return;
+    this.userOne.canPlay = !this.userOne.canPlay;
+    this.userTwo.canPlay = !this.userTwo.canPlay;
+    this.currentPlayer = this.userOne.canPlay ? this.userOne : this.userTwo;
+  }
+
+  setMockValues() {
+    if (this.initWithMocks) {
+      this.userOne = MChatacters[0];
+      this.userTwo = MChatacters[1];
+      this.defineCharacterThatStartsTheGame(this.userOne);
+      this.setStep('to-play');
+    }
+  }
+
+  restartGame() {
+    this.setMockValues();
+    this.currentPlayer.canPlay = true;
+  }
+
+  get getUserOne() {
+    return this.userOne;
+  }
+
+  get getUserTwo() {
+    return this.userTwo;
+  }
+
+  set setUserOne(character: ICharacter) {
+    this.userOne = character;
+  }
+
+  set setUserTwo(character: ICharacter) {
+    this.userTwo = character;
   }
 }
