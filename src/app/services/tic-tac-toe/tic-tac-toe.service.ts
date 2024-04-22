@@ -86,9 +86,19 @@ export class TicTacToeService {
   }
 
   toggleCurrentPlayerAndCheckWinner({ result }: IResultOfThePlay) {
-    if (result !== 'in-progress') this.currentPlayer.canPlay = false;
-    if (result === 'winner-defined') this.currentPlayer.points++;
-    else this.toggleCurrentPlayer();
+    const resultActions = {
+      'in-progress': () => {
+        this.toggleCurrentPlayer();
+      },
+      'winner-defined': () => {
+        this.currentPlayer.points++;
+      },
+      draw: () => {
+        alert('Empate!');
+      },
+    };
+
+    resultActions[result]();
   }
 
   toggleCurrentPlayer() {
