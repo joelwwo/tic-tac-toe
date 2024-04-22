@@ -2,24 +2,24 @@ import { ICharacter } from '../interfaces/ICharacter';
 
 export const MChatacters: ICharacter[] = [
   {
-    id: 1009718,
-    name: 'Wolverine',
+    id: 0,
+    name: '',
     thumbnail: {
-      path: 'http://i.annihil.us/u/prod/marvel/i/mg/2/60/537bcaef0f6cf',
-      extension: 'jpg',
+      path: 'assets/images/interrogation',
+      extension: 'png',
     },
-    canPlay: true,
+    canPlay: false,
     points: 0,
     identifier: 'o',
   },
   {
-    id: 1009412,
-    name: 'Madame Hydra',
+    id: 0,
+    name: '',
     thumbnail: {
-      path: 'http://i.annihil.us/u/prod/marvel/i/mg/c/20/4d5c39a54b1dd',
-      extension: 'jpg',
+      path: 'assets/images/interrogation',
+      extension: 'png',
     },
-    canPlay: true,
+    canPlay: false,
     points: 0,
     identifier: 'o',
   },

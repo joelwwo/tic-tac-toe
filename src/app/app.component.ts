@@ -11,8 +11,8 @@ import { MChatacters } from './Mocks/MCharacters';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  userOne?: ICharacter;
-  userTwo?: ICharacter;
+  userOne: ICharacter = MChatacters[0];
+  userTwo: ICharacter = MChatacters[1];
   step: TSteps = 'select-participants';
   currentPlayer!: ICharacter;
   initWithMocks = false;
@@ -35,7 +35,7 @@ export class AppComponent {
   }
 
   selectOpponents(chosenCharacter: ICharacter) {
-    if (!this.userOne) {
+    if (!this.userOne.id) {
       this.userOne = chosenCharacter;
       return;
     }
@@ -47,7 +47,7 @@ export class AppComponent {
   defineCharacterThatStartsTheGame(character: ICharacter) {
     character.identifier = 'x';
     this.currentPlayer = character;
-    if (!this.userOne?.id || !this.userTwo?.id) return;
+    if (!this.userOne.id || !this.userTwo.id) return;
     this.userOne.canPlay = this.userTwo.canPlay = false;
     character.canPlay = true;
     this.setStep('to-play');
